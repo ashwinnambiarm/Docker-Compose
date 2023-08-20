@@ -1,0 +1,41 @@
+#    links:
+#      - pgsql:pgsql-server
+      
+  mysql:
+    image: mysql:8.0
+    container_name: MySQL
+    restart: always
+    cap_add:
+      - SYS_NICE
+    environment:
+      - MYSQL_DATABASE=quotes
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=ashwin@123
+      - MYSQL_ROOT_PASSWORD=ashwin@123
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 1302:3306
+
+  dbeaver:
+    image: dbeaver/cloudbeaver:23.1.0
+    container_name: CloudBeaver
+    restart: unless-stopped
+    volumes:
+      - dbeaver-data:/opt/cloudbeaver/workspace
+    ports:
+      - 1303:8978
+  phpmyadmin:
+    image: arm64v8/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: ashwin@123
+    ports:
+      - 1304:80
+volumes:
+  pgsql-data:
+  pgadmin-data:
+  dbeaver-data:
+  mysql-data:
