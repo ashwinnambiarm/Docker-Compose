@@ -1,0 +1,15 @@
+version: "3"
+services:
+  git:
+    image: git:latest
+    container_name: gitbucket
+    user: 1000:100
+    ports:
+      - 1200:8080
+    volumes:
+      - /srv/dev-disk-by-uuid-9712d9e1-ceda-449e-b56e-4d43093c8d6c/MyDrive/apps/gitbucket:/home/user/.gitbucket
+    environment:
+      - PUID=1000
+      - PGID=100
+    hostname: gitbucket
+    restart: always
