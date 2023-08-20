@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  ariang:
+    image: hurlenko/aria2-ariang
+    ports:
+      - 1000:8080
+    volumes:
+      - /srv/dev-disk-by-uuid-9712d9e1-ceda-449e-b56e-4d43093c8d6c/MyDrive/downloads:/aria2/data
+      - /srv/dev-disk-by-uuid-9712d9e1-ceda-449e-b56e-4d43093c8d6c/MyDrive/apps/aria2:/aria2/conf
+    environment:
+      - PUID=1000
+      - PGID=100
+      - RPC_SECRET=secret
+      - ARIA2RPCPORT=443
+    restart: always
+    hostname: ariang
