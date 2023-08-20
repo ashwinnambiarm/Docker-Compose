@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  filebrowser:
+    image: hurlenko/filebrowser
+    user: 1000:100
+    ports:
+      - 1100:8080
+    volumes:
+      - /srv/dev-disk-by-uuid-9712d9e1-ceda-449e-b56e-4d43093c8d6c/MyDrive/apps/filebrowser/config:/config
+      - /srv/dev-disk-by-uuid-9712d9e1-ceda-449e-b56e-4d43093c8d6c/MyDrive:/data
+    environment:
+      - PUID=1000
+      - PGID=100
+    hostname: filebrowser
+    restart: always
