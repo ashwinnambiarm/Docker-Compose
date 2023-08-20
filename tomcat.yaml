@@ -1,0 +1,16 @@
+version: "3.5"
+services:
+  tomcat:
+    image: tomcat:9.0.76-jdk11
+    container_name: tomcat1
+    user: 1000:100
+    ports:
+      - 1301:8080
+    volumes:
+      - /srv/dev-disk-by-uuid-9712d9e1-ceda-449e-b56e-4d43093c8d6c/MyDrive/apps/tomcat/webapps:/usr/local/tomcat/webapps
+
+    restart: "on-failure"
+    environment:
+      - PUID=1000
+      - PGID=100
+    hostname: tomcat
